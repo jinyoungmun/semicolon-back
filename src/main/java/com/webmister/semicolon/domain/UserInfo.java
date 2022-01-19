@@ -1,6 +1,7 @@
 package com.webmister.semicolon.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -23,6 +24,8 @@ public class UserInfo {
     @Column(nullable = false)
     private String userNickName;
 
+
+    @CreationTimestamp
     @Column(nullable = false)
     private Timestamp userCreateTime;
 
