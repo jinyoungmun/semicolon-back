@@ -3,6 +3,7 @@ package com.webmister.semicolon.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -11,15 +12,30 @@ public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
+
+    @Column(nullable = false)
+    private String userEmail;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String userNickName;
+
+    @Column(nullable = false)
+    private Timestamp userCreateTime;
+
+    @Column(nullable = false)
+    private String userUniqueID;
 
     @Column
-    String userEmail;
+    private String userProfileImageUrl;
 
     @Column
-    String password;
+    private String userOneLineIntroduction;
 
     @OneToMany(mappedBy = "userInfo")
-    List<Report> reportList;
+    private List<Report> reportList;
 
 }
