@@ -18,8 +18,8 @@ public class UserInfoService {
     }
 
     public List<UserInfo> findAll(){
-        List<UserInfo> aa = userInfoRepository.findAll();
-        System.out.println(aa);
-        return aa;
+        List<UserInfo> AllUser = userInfoRepository.findAll();
+        System.out.println(AllUser);
+        return AllUser;
     }
 }

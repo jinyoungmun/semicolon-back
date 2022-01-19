@@ -4,12 +4,12 @@ import com.webmister.semicolon.domain.Report;
 import lombok.Data;
 
 @Data
-public class Rptlrmf {
+public class Post {
     String title;
     String contents;
     String description;
 
-    public Rptlrmf(Report report){
+    public Post(Report report){
         this.title = report.getTitle();
         this.contents = report.getContents();
         this.description ="임시";
