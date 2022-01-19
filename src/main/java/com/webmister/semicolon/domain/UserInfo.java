@@ -12,7 +12,7 @@ public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(nullable = false)
     private String userEmail;
@@ -33,7 +33,7 @@ public class UserInfo {
     private String userProfileImageUrl;
 
     @Column
-    private String userOneLineIntroduction;
+    private String userDescription;
 
     @OneToMany(mappedBy = "userInfo")
     private List<Report> reportList;
