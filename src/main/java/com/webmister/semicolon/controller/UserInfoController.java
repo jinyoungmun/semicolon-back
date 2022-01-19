@@ -2,9 +2,11 @@ package com.webmister.semicolon.controller;
 
 import com.webmister.semicolon.domain.UserInfo;
 import com.webmister.semicolon.request.FindUserOnlyOneResponse;
+import com.webmister.semicolon.request.UserInfoRequest;
 import com.webmister.semicolon.response.FindUserOnlyOneRequest;
 import com.webmister.semicolon.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -49,5 +51,13 @@ public class UserInfoController {
 
         return new ResponseEntity<>( findUserOnlyOneResponse,resHeaders,  HttpStatus.OK);
     }
+
+    @PostMapping("/signUp")
+    public void signUp(@RequestBody UserInfoRequest userInfoRequest) {
+        userInfoService.join(userInfoRequest);
+    }
+
+
+
 
 }

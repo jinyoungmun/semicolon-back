@@ -1,6 +1,6 @@
 package com.webmister.semicolon.domain;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -9,6 +9,10 @@ import java.util.List;
 
 @Entity
 @Data
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserInfo {
 
     @Id
@@ -23,7 +27,6 @@ public class UserInfo {
 
     @Column(nullable = false)
     private String userNickName;
-
 
     @CreationTimestamp
     @Column(nullable = false)
@@ -41,4 +44,6 @@ public class UserInfo {
     @OneToMany(mappedBy = "userInfo")
     private List<Report> reportList;
 
+
 }
+
