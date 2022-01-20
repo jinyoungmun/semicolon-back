@@ -1,25 +1,49 @@
 package com.webmister.semicolon.domain;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
 @Data
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column
-    String userEmail;
+    @Column(nullable = false)
+    private String userEmail;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String userNickName;
+
+    @CreationTimestamp
+    @Column(nullable = false)
+    private Timestamp userCreateTime;
+
+    @Column(nullable = false)
+    private String userUniqueID;
 
     @Column
-    String password;
+    private String userProfileImageUrl;
+
+    @Column
+    private String userDescription;
 
     @OneToMany(mappedBy = "userInfo")
-    List<Report> reportList;
+    private List<Report> reportList;
+
 
 }
+

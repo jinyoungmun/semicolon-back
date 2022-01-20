@@ -1,6 +1,6 @@
 package com.webmister.semicolon.request;
 
-import com.webmister.semicolon.DTO.Rptlrmf;
+import com.webmister.semicolon.dto.Post;
 import com.webmister.semicolon.domain.Report;
 import com.webmister.semicolon.domain.UserInfo;
 import lombok.Data;
@@ -12,18 +12,18 @@ import java.util.List;
 public class FindUserOnlyOneResponse {
     String email;
     String password;
-    List<Rptlrmf> rptlrmfList;
+    List<Post> postList;
 
     public FindUserOnlyOneResponse(UserInfo userInfo){
-        this.rptlrmfList = new ArrayList<>();
+        this.postList = new ArrayList<>();
         this.setEmail(userInfo.getUserEmail());
         this.setPassword(userInfo.getPassword());
-        this.modifyReportTorptlrmf(userInfo.getReportList());
+        this.modifyReportTopost(userInfo.getReportList());
     }
 
-    private void modifyReportTorptlrmf(List<Report> reportList){
+    private void modifyReportTopost(List<Report> reportList){
         for(Report report: reportList){
-            this.getRptlrmfList().add(new Rptlrmf(report));
+            this.getPostList().add(new Post(report));
         }
     }
 
