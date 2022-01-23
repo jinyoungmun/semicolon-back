@@ -12,7 +12,6 @@ import java.util.List;
 @Builder
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserInfo {
 
     @Id
@@ -45,5 +44,8 @@ public class UserInfo {
     private List<Report> reportList;
 
 
+    public UserInfo() {
+
+    }
 }
 
