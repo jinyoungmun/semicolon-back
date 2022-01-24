@@ -43,9 +43,17 @@ public class UserInfo {
     @OneToMany(mappedBy = "userInfo")
     private List<Report> reportList;
 
+    public UserInfo updatePassword(String password) {
+        this.password = password;
+        return this;
+    }
 
     public UserInfo() {
 
     }
+
+
+
+
 }
 

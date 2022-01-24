@@ -4,11 +4,12 @@ import com.webmister.semicolon.domain.UserInfo;
 import com.webmister.semicolon.repository.UserInfoRepository;
 import com.webmister.semicolon.request.Login;
 import com.webmister.semicolon.request.UserInfoRequest;
-import org.apache.catalina.User;
+import org.hibernate.annotations.SQLUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserInfoService {
@@ -35,15 +36,16 @@ public class UserInfoService {
     }
 
    public String login(Login login) {
-        UserInfo user = userInfoRepository.findByUserEmailAndPassword(login.getUserEmail(), login.getPassword());
-
-        if(login.getUserEmail().equals(user.getUserEmail()) && login.getPassword().equals(user.getPassword())) {
-            return "로그인에 성공하였습니다.";
-        } else {
-            return "로그인에 실패하였습니다.";
-        }
+       userInfoRepository.findByUserEmailAndPassword(login.getUserEmail(), login.getPassword())
+               .orElseThrow(RuntimeException::new);
+       return "로그인에 성공하였습니다.";
    }
 
+   public void updatePasswordService(String email, String password) {
+        UserInfo userInfo = userInfoRepository.findByUserEmail(email)
+                .orElseThrow(RuntimeException::new);
+        userInfoRepository.save(userInfo.updatePassword(password));
+   }
 
     public void signUp(UserInfoRequest userInfoRequest) {
             userInfoRepository.save(UserInfo.builder()
