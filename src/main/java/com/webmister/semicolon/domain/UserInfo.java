@@ -12,7 +12,6 @@ import java.util.List;
 @Builder
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserInfo {
 
     @Id
@@ -43,6 +42,18 @@ public class UserInfo {
 
     @OneToMany(mappedBy = "userInfo")
     private List<Report> reportList;
+
+
+    public UserInfo setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public UserInfo() {
+
+    }
+
+
 
 
 }
