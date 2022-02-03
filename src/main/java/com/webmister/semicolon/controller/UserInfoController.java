@@ -54,7 +54,7 @@ public class UserInfoController {
 
     @PostMapping("/signUp")
     public void signUp(@RequestBody UserInfoRequest userInfoRequest) {
-        userInfoService.join(userInfoRequest);
+        userInfoService.signUp(userInfoRequest);
     }
 
 
