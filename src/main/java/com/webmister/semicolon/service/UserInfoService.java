@@ -38,13 +38,13 @@ public class UserInfoService {
    public String login(Login login) {
        userInfoRepository.findByUserEmailAndPassword(login.getUserEmail(), login.getPassword())
                .orElseThrow(RuntimeException::new);
-       return "로그인에 성공하였습니다.";
+       return "succees";
    }
 
    public void updatePasswordService(String email, String password) {
         UserInfo userInfo = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(RuntimeException::new);
-        userInfoRepository.save(userInfo.updatePassword(password));
+        userInfoRepository.save(userInfo.setPassword(password));
    }
 
     public void signUp(UserInfoRequest userInfoRequest) {
