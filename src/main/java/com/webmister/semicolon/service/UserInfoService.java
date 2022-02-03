@@ -35,19 +35,21 @@ public class UserInfoService {
         return userInfoRepository.existsByUserNickName(userNickname);
     }
 
-   public String login(Login login) {
-       userInfoRepository.findByUserEmailAndPassword(login.getUserEmail(), login.getPassword())
-               .orElseThrow(RuntimeException::new);
-       return "succees";
+   public UserInfo login(Login login) {
+        return userInfoRepository.findByUserEmailAndPassword(login.getUserEmail(), login.getPassword())
+                .orElse(new UserInfo());
    }
 
-   public void updatePasswordService(String email, String password) {
+   public UserInfo updatePasswordService(String email, String password) {
         UserInfo userInfo = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(RuntimeException::new);
+                .orElse(new UserInfo());
         userInfoRepository.save(userInfo.setPassword(password));
+        return userInfo;
    }
 
-    public void signUp(UserInfoRequest userInfoRequest) {
+    public Boolean signUp(UserInfoRequest userInfoRequest) {
+
+        try {
             userInfoRepository.save(UserInfo.builder()
                     .password(userInfoRequest.getPassword())
                     .userEmail(userInfoRequest.getUserEmail())
@@ -56,6 +58,11 @@ public class UserInfoService {
                     .userProfileImageUrl(userInfoRequest.getUserProfileImageUrl())
                     .userDescription(userInfoRequest.getUserDescription())
                     .build());
+            return Boolean.TRUE;
+
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
     }
 
 
